@@ -1,0 +1,91 @@
+#include <stdio.h>
+
+void display_array(int arr[], int size) {
+    printf("Array: ");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
+
+void insert_position(int arr[], int *size) {
+    int pos, n;
+
+    if (*size >= 100) {
+        printf("Array is full, cannot insert more elements.\n");
+        return;
+    }
+
+    printf("Enter the number to be inserted: ");
+    scanf("%d", &n);
+
+    printf("Enter position (0-%d) at which the number is to be added: ", *size);
+    scanf("%d", &pos);
+
+    if (pos < 0 || pos > *size) {
+        printf("Invalid position. Please enter a valid position between 0 and %d.\n", *size);
+        return;
+    }
+
+    // Efficiently shift elements using a single loop
+    for (int i = *size; i > pos; i--) {
+        arr[i] = arr[i - 1];
+    }
+
+    arr[pos] = n;
+    (*size)++; // Update size after insertion
+
+    printf("Array after insertion: ");
+    display_array(arr, *size);
+}
+
+void search_number(int arr[], int size) {
+    int num_to_search;
+
+    printf("Enter the number to search: ");
+    scanf("%d", &num_to_search);
+
+    int found = 0;
+    for (int i = 0; i < size; i++) {
+        if (arr[i] == num_to_search) {
+            printf("Number %d found at index %d\n", num_to_search, i);
+            found = 1;
+            break;
+        }
+    }
+
+    if (!found) {
+        printf("Number %d not found in the array.\n", num_to_search);
+    }
+}
+
+int main() {
+    int arr[100];
+    int size = 0;
+    int c;
+
+    do {
+        printf("\nMenu:\n");
+        printf("1. Insert a number\n");
+        printf("2. Search for a number\n");
+        printf("3. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &c);
+
+        switch (c) {
+            case 1:
+                insert_position(arr, &size);
+                break;
+            case 2:
+                search_number(arr, size);
+                break;
+            case 3:
+                printf("Exiting...\n");
+                break;
+            default:
+                printf("Invalid choice.\n");
+        }
+    } while (c != 3);
+
+    return 0;
+}
