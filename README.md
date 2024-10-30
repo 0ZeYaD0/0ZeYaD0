@@ -1,5 +1,5 @@
 <h1 align="center">Hi 👋, I'm Zeyad Emad</h1>
-<h3 align="center">I am hoping to be great</h3>
+<h3 align="center">I am in a long journy mission to make my dreams come true</h3>
 
 <h3 align="left">Connect with me:</h3>
 <p align="left">
